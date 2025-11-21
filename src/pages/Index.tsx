@@ -336,25 +336,43 @@ const Index = () => {
 
           {activeTab === 'ai' && (
             <div className="p-4 space-y-4 animate-fade-in">
-              <h2 className="text-2xl font-heading font-bold text-foreground">AI Визуализация</h2>
+              <div className="space-y-2">
+                <h2 className="text-2xl font-heading font-bold text-foreground">AI Визуализация</h2>
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 rounded-full bg-primary animate-pulse"></div>
+                  <p className="text-sm text-muted-foreground">Работает на основе искусственного интеллекта</p>
+                </div>
+              </div>
 
-              <Card className="bg-gradient-to-br from-primary/5 to-primary/10 border-primary/20">
-                <CardHeader>
-                  <CardTitle className="text-lg font-heading">Генератор дизайна</CardTitle>
+              <Card className="bg-gradient-to-br from-primary/5 to-primary/10 border-primary/20 border-2">
+                <CardHeader className="space-y-1">
+                  <div className="flex items-center gap-2">
+                    <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center">
+                      <Icon name="Sparkles" size={16} className="text-primary" />
+                    </div>
+                    <CardTitle className="text-lg font-heading">Генератор дизайна</CardTitle>
+                  </div>
                   <CardDescription>
-                    Опишите интерьер вашей мечты, и ИИ визуализирует его
+                    Опишите интерьер вашей мечты, и искусственный интеллект визуализирует его за секунды
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  <Textarea
-                    placeholder="Например: современная кухня с белыми шкафами, деревянной столешницей и зелеными акцентами..."
-                    value={aiPrompt}
-                    onChange={(e) => setAiPrompt(e.target.value)}
-                    className="min-h-[100px]"
-                  />
-                  <Button className="w-full h-12 font-semibold" size="lg">
+                  <div className="space-y-2">
+                    <label className="text-sm font-medium text-foreground flex items-center gap-2">
+                      <Icon name="MessageSquare" size={16} className="text-primary" />
+                      Ваш запрос
+                    </label>
+                    <Textarea
+                      placeholder="Опишите желаемый интерьер в деталях, например: &#10;&#10;• Современная кухня с белыми шкафами&#10;• Деревянная столешница из светлого дуба&#10;• Зеленые растения и акценты&#10;• Большие окна с естественным светом"
+                      value={aiPrompt}
+                      onChange={(e) => setAiPrompt(e.target.value)}
+                      className="min-h-[140px] resize-none"
+                    />
+                    <p className="text-xs text-muted-foreground">Чем подробнее описание, тем лучше результат</p>
+                  </div>
+                  <Button className="w-full h-12 font-semibold" size="lg" disabled={!aiPrompt.trim()}>
                     <Icon name="Sparkles" size={20} className="mr-2" />
-                    Сгенерировать дизайн
+                    Сгенерировать с помощью AI
                   </Button>
                 </CardContent>
               </Card>
